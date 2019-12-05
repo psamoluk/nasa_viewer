@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http show get;
+import 'dart:math';
 
 import './widgets/image_list.dart';
 import './widgets/navigation_bottom.dart';
@@ -29,6 +30,14 @@ class AppState extends State<App> {
   }
   void selectDate() {
       print('this will randomize date');
+      Random _random = new Random();
+      int yearMin = 2010;
+      var rYear = yearMin + _random.nextInt(DateTime.now().year-2010);
+      var rMonth = 1+_random.nextInt(12-0);
+      var rDay = 1+_random.nextInt(28-0);
+      date = new DateTime.utc(rYear, rMonth, rDay);
+      fetchImage();
+
   }
   @override
   void initState() {
@@ -72,12 +81,7 @@ class AppState extends State<App> {
             IconButton(
               icon: const Icon(Icons.refresh),
               onPressed: (){
-                showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2010,8),
-                  lastDate: DateTime.now()
-                );
+                clearList();
               }, // clearList,
             ),
           ],

@@ -18,7 +18,7 @@ class BottomNavigation extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(Icons.date_range),
-              onPressed: () {print('enter date');},
+              onPressed: () {randomizeDate();},
             ),
             IconButton(
               icon: Icon(Icons.settings),
